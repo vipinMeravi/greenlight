@@ -1,8 +1,0 @@
-*.gem
-pkg
-*~
-features/config.yml
-logs/bbb.log
-rdoc/
-logs/*
-.bundle/
