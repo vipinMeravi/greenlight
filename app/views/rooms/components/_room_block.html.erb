@@ -47,9 +47,9 @@
               <i class="fas fa-ellipsis-v px-4"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-md-left">
-              <a href="" data-toggle="modal" data-target="#createRoomModal" class="update-room dropdown-item" data-settings-path="<%= room_settings_path(room) %>">
+              <%= link_to room_details_index_url, class: "update-room dropdown-item", :action => room_settings_path(room) do %>
                 <i class="dropdown-icon fas fa-cog"></i> <%= t("room.settings") %>
-              </a>
+              <%end%>
               <% if shared_access_allowed %>
                 <a href="" data-toggle="modal" data-target="#shareRoomModal" class="share-room dropdown-item" data-path="<%= room_shared_access_path(room) %>" data-users-path="<%= room_shared_users_path(room) %>">
                   <i class="dropdown-icon fas fa-users"></i> <%= t("room.share") %>

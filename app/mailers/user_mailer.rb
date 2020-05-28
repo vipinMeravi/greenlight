@@ -98,4 +98,15 @@ class UserMailer < ApplicationMailer
 
     mail to: admin_emails, subject: t('mailer.user.invite.signup.subject')
   end
+
+  # User Invitation Vipin
+  def user_invite_email(name, email, url, settings)
+    @settings = settings
+    @name = name
+    @email = email
+    @url = url
+    @image = logo_image
+    @color = user_color
+    mail to: email, subject: "Join the Zecast Meeting"
+  end
 end

@@ -55,6 +55,10 @@ module BbbServer
     join_opts[:userID] = uid if uid
     join_opts[:join_via_html5] = true
     join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
+    
+    # Define pre-loaded slides
+    # join_opts[:xml] = xml
+
 
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
   end
@@ -71,14 +75,24 @@ module BbbServer
       "meta_#{META_LISTED}": options[:recording_default_visibility] || false,
       "meta_bbb-origin-version": Greenlight::Application::VERSION,
       "meta_bbb-origin": "Greenlight",
-      "meta_bbb-origin-server-name": options[:host]
+      "meta_bbb-origin-server-name": options[:host],
     }
 
     create_options[:guestPolicy] = "ASK_MODERATOR" if options[:require_moderator_approval]
 
+    modules = BigBlueButton::BigBlueButtonModules.new
+    modules.add_presentation(:file, "./slide.ppt")
+    # modules.add_presentation(:filename, "dummy.pdf")
+    # modules.add_presentation(:url, 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', "dummy.pdf")
+    
+
     # Send the create request.
     begin
-      meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options)
+      print "==========================================================\n"
+      print room.upload_pdf
+      print "==========================================================\n"
+      # meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options)
+      meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options, modules)
       # Update session info.
       unless meeting[:messageKey] == 'duplicateWarning'
        room.update_attributes(sessions: room.sessions + 1,

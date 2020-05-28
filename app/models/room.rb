@@ -21,6 +21,9 @@ require 'bbb_api'
 class Room < ApplicationRecord
   include Deleteable
 
+  mount_uploader :upload_pdf, UploadPdfUploader
+  mount_uploader :upload_ppt, UploadPdfUploader
+
   before_create :setup
 
   validates :name, presence: true

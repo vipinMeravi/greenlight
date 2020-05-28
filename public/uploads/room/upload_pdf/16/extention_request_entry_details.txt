@@ -1,0 +1,16 @@
+R4872833 2913823 = bjbevim_23Feb2020_163100 [3rd entry]
+R7261302 2967351 = Request not made. 
+R3946499 2913643 = bjbevim_19Feb2020_113100 [3rd entry]
+R3801201 2911386 = 2 req 1. bjbevim_09Feb2020_113100 [11th entry] 2. bjbevim_09Mar2020_123108 [10th entry]
+R0127706 2898515 = bjbevim_29Jan2020_143100[17th entry]
+R3101523 2898471 = bjbevim_29Jan2020_103100 - 9th entry
+R4149750 2926789 = bjbevim_23Feb2020_153100 - 5th entry
+R3428709 2912917 = 2 req 1. bjbevim_23Feb2020_163100 - 7th entry 2. bjbevim_03Mar2020_173100 - 8th entry
+R6313573 2928867 = bjbevim_27Feb2020_093100 - 13th entry
+R7737745 2918889 = bjbevim_17Feb2020_153108 - 2nd entry
+R1779583 2926186 = 2req 1. Req not made and accepted, 2. Server Restart Error
+R9812097 2918677 = bjbevim_14Feb2020_103100 - 3rd entry
+R8802010 2927087 = bjbevim_23Feb2020_153100 - 3rd entry
+R8557500 2926862 = bjbevim_18Feb2020_173108 - 5th entry
+
+

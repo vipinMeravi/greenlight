@@ -554,6 +554,7 @@ en:
     password_confirm: Password Confirmation
     subtitle: Create an Account
     title: Sign up
+    title_new: New Button
     with: Sign up with %{provider}
   terms:
     accept: I accept the %{href}

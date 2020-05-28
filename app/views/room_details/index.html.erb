@@ -1,0 +1,141 @@
+
+<div class="col-xs-12 col-sm-8 col-md-6 col-lg-10 mx-auto mt-5 mb-5">
+  <div class="form-group">
+    <div class="card-title">
+      <h3 class="create-only"><%= t("modal.create_room.title") %></h3>
+      <h3 class="update-only"><%= t("modal.room_settings.title") %></h3>
+    </div>
+
+    <div class="row shadow-lg p-3 mb-5 bg-black rounded">
+      <%= form_for(:room, url: room_details_index_url, multipart: true ) do |f| %>
+        <div class="row">
+          <div class="col-lg-6 pt-4" >
+	        
+	        <div class="input-icon mb-2">
+	          <span class="input-icon-addon">
+	            <i class="fas fa-chalkboard-teacher"></i>
+	          </span>
+	          <%= f.text_field :name, id: "create-room-name", class: "form-control text-center", value: "", placeholder: t("modal.create_room.name_placeholder"), autofocus: true, autocomplete: :off %>
+	          <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
+	        </div>
+
+	        <div class="input-icon mb-2">
+	          <span class="input-icon-addon">
+	            <i class="fas fa-search"></i>
+	          </span>
+	          <%= f.url_field :website_url, id: "website_url", class: "form-control text-center", value: "", placeholder: "https://webrtc.zecast.com", autocomplete: :off %>
+	          <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
+	        </div>
+
+	        <div class="input-icon mb-2">
+	          <span class="input-icon-addon">
+	            <i class="fas fa-video"></i>
+	          </span>
+	          <%= f.url_field :video_url, id: "video_url", class: "form-control text-center", value: "", placeholder: "https://webrtc.zecast.com/recording0011", autocomplete: :off %>
+	          <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
+	        </div>	        
+
+	        <div class="input-icon mb-2">
+	          <span onclick="generateAccessCode()" class="input-icon-addon allow-icon-click cursor-pointer">
+	            <i class="fas fa-dice"></i>
+	          </span>
+	          <%= f.label :access_code, t("modal.create_room.access_code_placeholder"), id: "create-room-access-code", class: "form-control" %>
+	          <%= f.hidden_field :access_code %>
+	          <span onclick="ResetAccessCode()" class="input-icon-addon allow-icon-click cursor-pointer">
+	            <i class="far fa-trash-alt"></i>
+	          </span>
+	        </div>
+
+	        <div class="input-icon mb-2">
+	          <span class="input-icon-addon">
+	            <i class="fas fa-envelope"></i>
+	          </span>
+	          
+	          <%= f.text_field :invite_emails, id: "create-room-name", class: "form-control text-center", value: "", placeholder: "Send Invitation (validuser@mailprovider.com)", autocomplete: :off %>
+	          <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
+	        </div>       	        
+
+
+		      <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
+		        <span class="custom-switch-description"><%= "UPLOAD PDF"%></span>
+	          	<%= f.file_field :upload_pdf, id: "create-room-name", class: "form-control text-center", value: "",  autocomplete: :off %>
+		      </label>	        
+
+		      <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
+		        <span class="custom-switch-description"><%= "UPLOAD PPT"%></span>
+	          	<%= f.file_field :upload_ppt, id: "create-room-name", class: "form-control text-center", value: "",  autocomplete: :off %>
+		      </label>	 
+
+
+          </div>
+          
+          <div class="col-lg-6">
+
+	        <% mute = room_configuration("Room Configuration Mute On Join") %>
+	        <% if mute != "disabled" %>
+	          <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if mute == "enabled" %>">
+	            <span class="custom-switch-description"><%= t("modal.room_settings.mute")%></span>
+	            <%= f.check_box :mute_on_join, class: "custom-switch-input", data: { default: mute == "enabled" }, checked: false %>
+	            <span class="custom-switch-indicator float-right cursor-pointer"></span>
+	          </label>
+	        <% end %>
+
+	        <% require_approval = room_configuration("Room Configuration Require Moderator") %>
+	        <% if require_approval != "disabled" %>
+	          <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if require_approval == "enabled" %>">
+	            <span class="custom-switch-description"><%= t("modal.room_settings.require_approval")%></span>
+	            <%= f.check_box :require_moderator_approval, class: "custom-switch-input", data: { default: require_approval == "enabled" }, checked: false %>
+	            <span class="custom-switch-indicator float-right cursor-pointer"></span>
+	          </label>
+	        <% end %>
+	        
+	        <% any_start = room_configuration("Room Configuration Allow Any Start") %>
+	        <% if any_start != "disabled" %>
+	          <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if any_start == "enabled" %>">
+	            <span class="custom-switch-description"><%= t("modal.room_settings.start")%></span>
+	            <%= f.check_box :anyone_can_start, class: "custom-switch-input", data: { default: any_start == "enabled" }, checked: false %>
+	            <span class="custom-switch-indicator float-right cursor-pointer"></span>
+	          </label>
+	        <% end %>
+
+	        <% moderator = room_configuration("Room Configuration All Join Moderator") %>
+	        <% if moderator != "disabled" %>
+	          <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if moderator == "enabled" %>">
+	            <span class="custom-switch-description"><%= t("modal.room_settings.join_moderator")%></span>
+	            <%= f.check_box :all_join_moderator, class: "custom-switch-input", data: { default: moderator == "enabled" }, checked: false %>
+	            <span class="custom-switch-indicator float-right cursor-pointer"></span>
+	          </label>
+	        <% end %>
+
+	        <label id="auto-join-label" class="create-only custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
+	          <span class="custom-switch-description"><%= t("modal.create_room.auto_join") %></span>
+	          <%= f.check_box :auto_join, class: "custom-switch-input", checked: false %>
+	          <span class="custom-switch-indicator float-right cursor-pointer"></span>
+	        </label>
+
+		      <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
+		        <span class="custom-switch-description"><%= "Meeting Scheduler"%></span>
+
+		        <%= f.datetime_local_field :meeting_datetime, required: true, class: "form-control text-center" %>
+		        
+		      </label>
+
+		      <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
+		        <span class="custom-switch-description"><%= "BackGround Color"%></span>
+
+		        <%= f.color_field :background_color, required: true, value: "#6495ED", class: "form-control text-center" %>
+		        
+		      </label>		      	        
+              
+          </div>
+
+        </div>
+
+        	<br>
+        	<div class="col-lg-5 mx-auto">
+        		<%= f.submit t("modal.create_room.create"), class: "create-only btn btn-primary btn-block" %>
+        	</div>
+      <% end %>
+    </div>    
+  </div>
+</div>

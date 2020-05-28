@@ -17,6 +17,9 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
 Rails.application.routes.draw do
+  get 'room_details/index'
+  post 'room_details/index', to: 'room_details#test', as: :test
+  get 'welcome/index'
   get '/health_check', to: 'health_check#all'
 
   # Error routes.

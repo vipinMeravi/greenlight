@@ -1,0 +1,18 @@
+find inside you
+
+"upload_ppt"=>
+#<ActionDispatch::Http::UploadedFile:0x00007f9a3ff821a0 
+@tempfile=#<Tempfile:/tmp/RackMultipart20200522-5685-1tz79op>, 
+@original_filename="testingUpload", 
+@content_type="application/octet-stream", 
+@headers="
+Content-Disposition: form-data; 
+name=\"room[upload_ppt]\"; 
+filename=\"testingUpload\"
+\r\n
+Content-Type: application/octet-stream
+\r\n">
+
+<a href="" data-toggle="modal" data-target="#createRoomModal" class="update-room dropdown-item" data-settings-path="<%= room_settings_path(room) %>">
+                <i class="dropdown-icon fas fa-cog"></i> <%= t("room.settings") %>
+              </a>

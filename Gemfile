@@ -133,3 +133,7 @@ gem 'random_password'
 gem "recaptcha"
 
 gem 'i18n-language-mapping', '~> 0.1.1'
+
+gem 'carrierwave'   
+
+gem 'bootstrap-sass'  

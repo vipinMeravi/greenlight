@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_30_144841) do
+ActiveRecord::Schema.define(version: 2020_05_25_074948) do
 
   create_table "features", force: :cascade do |t|
     t.integer "setting_id"
@@ -75,6 +75,13 @@ ActiveRecord::Schema.define(version: 2020_01_30_144841) do
     t.string "attendee_pw"
     t.string "access_code"
     t.boolean "deleted", default: false, null: false
+    t.string "website_url"
+    t.string "video_url"
+    t.date "meeting_datetime"
+    t.string "invite_emails"
+    t.string "upload_pdf"
+    t.string "upload_ppt"
+    t.string "background_color"
     t.index ["bbb_id"], name: "index_rooms_on_bbb_id"
     t.index ["deleted"], name: "index_rooms_on_deleted"
     t.index ["last_session"], name: "index_rooms_on_last_session"

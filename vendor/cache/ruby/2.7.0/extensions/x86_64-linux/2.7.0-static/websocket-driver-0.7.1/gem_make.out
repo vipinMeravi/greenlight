@@ -1,0 +1,15 @@
+current directory: /home/vipin/greenlight/vendor/cache/ruby/2.7.0/gems/websocket-driver-0.7.1/ext/websocket-driver
+/usr/local/bin/ruby -I /usr/local/lib/ruby/2.7.0 -r ./siteconf20200519-9112-1ftiveo.rb extconf.rb
+creating Makefile
+
+current directory: /home/vipin/greenlight/vendor/cache/ruby/2.7.0/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /home/vipin/greenlight/vendor/cache/ruby/2.7.0/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/vipin/greenlight/vendor/cache/ruby/2.7.0/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20200519-9112-1qx0qm1

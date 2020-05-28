@@ -83,6 +83,20 @@ module Emailer
     end
   end
 
+  #Send User Invitation to join Vipin
+  def send_user_invitation_email(name, email, url)
+    begin
+      return unless Rails.configuration.enable_email_verification
+
+      UserMailer.user_invite_email(name, email, url, @settings).deliver_now
+    rescue => e
+      logger.error "Support: Error in email delivery: #{e}"
+      flash[:alert] = I18n.t(params[:message], default: I18n.t("delivery_error"))
+    else
+      flash[:success] = I18n.t("administrator.flash.invite", email: email)
+    end
+  end
+
   def send_user_approved_email(user)
     begin
       return unless Rails.configuration.enable_email_verification
