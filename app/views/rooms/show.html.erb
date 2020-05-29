@@ -32,7 +32,14 @@
             <a><i id="edit-room" class="fa fa-edit align-top home-indicator ml-2" data-edit-room="<%= @room.uid %>"></i></a>
           <% end %>
         </div>
+        <% if @room.meeting_datetime %>
+          <h4 class="text-left mb-6">Starting at <%= @room.meeting_datetime.to_s.split("U")[0] %> </h4>
+        <% else %>
+          <h4 class="text-left mb-6"> Meeting not scheduled</h4>
+        <% end %> 
+    
         <h4 class="text-left mb-6"><%= @room.sessions %> <%= t("room.sessions") %> | <%= @recordings.length %> <%= t("room.recordings") %></h4>
+
         <% unless exceeds_limit %>
           <label class="form-label"><%= t("room.invite_participants") %></label>
           <div class="row">
@@ -70,7 +77,7 @@
           <%= button_to t("room.join"), room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
         <% else %>
           <% unless exceeds_limit %>
-            <% if  @room.meeting_datetime > DateTime.current %>
+            <% if  @room.meeting_datetime  %>
               <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right",data: { confirm: "The meeting is scheduled at " + @room.meeting_datetime.to_s + ". Are you sure to Start the Meeting", disable_with: 'loading...' } %>
             <% else %>
               <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": ""  %>

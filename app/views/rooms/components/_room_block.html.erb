@@ -29,10 +29,17 @@
         <td>
           <div>
             <h4 contenteditable="false" class="m-0 force-text-normal room-name-text" ><%= room.name %></h4>
+            <div class="small text-muted">
+            <% if room.meeting_datetime %>
+              <i><%= "Starting at : "+ room.meeting_datetime.to_s.split('U')[0] %></i>
+            <% else %>
+              <i><%= "Meeting not scheduled" %></i>
+            <% end %>
+          </div>   
           </div>
           <div style="display: none">
             <input class="form-control input-sm w-100 h-4 room-name-editable" value="<%= room.name %>">
-          </div>
+          </div>       
           <div class="small text-muted">
             <% if room.sessions > 0 %>
               <i><%= t("room.last_session", session: recording_date(room.last_session)) %></i>
