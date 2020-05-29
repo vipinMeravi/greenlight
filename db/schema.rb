@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_074948) do
+ActiveRecord::Schema.define(version: 2020_05_29_083755) do
 
   create_table "features", force: :cascade do |t|
     t.integer "setting_id"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_074948) do
     t.boolean "deleted", default: false, null: false
     t.string "website_url"
     t.string "video_url"
-    t.date "meeting_datetime"
+    t.datetime "meeting_datetime", default: "2020-05-29 08:45:15"
     t.string "invite_emails"
     t.string "upload_pdf"
     t.string "upload_ppt"

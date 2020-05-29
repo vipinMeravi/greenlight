@@ -70,7 +70,11 @@
           <%= button_to t("room.join"), room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
         <% else %>
           <% unless exceeds_limit %>
-            <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
+            <% if  @room.meeting_datetime > DateTime.current %>
+              <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right",data: { confirm: "The meeting is scheduled at " + @room.meeting_datetime.to_s + ". Are you sure to Start the Meeting", disable_with: 'loading...' } %>
+            <% else %>
+              <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": ""  %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

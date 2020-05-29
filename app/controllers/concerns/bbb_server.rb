@@ -46,7 +46,7 @@ module BbbServer
   def join_path(room, name, options = {}, uid = nil)
     # Create the meeting, even if it's running
     start_session(room, options)
-
+    
     # Determine the password to use when joining.
     password = options[:user_is_moderator] ? room.moderator_pw : room.attendee_pw
 
@@ -79,20 +79,25 @@ module BbbServer
     }
 
     create_options[:guestPolicy] = "ASK_MODERATOR" if options[:require_moderator_approval]
-
+  
     modules = BigBlueButton::BigBlueButtonModules.new
-    modules.add_presentation(:file, "./slide.ppt")
+    modules.add_presentation(:file, room.upload_pdf.path)
     # modules.add_presentation(:filename, "dummy.pdf")
-    # modules.add_presentation(:url, 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', "dummy.pdf")
-    
+    modules.add_presentation(:url, 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', "dummy.pdf")
 
     # Send the create request.
     begin
       print "==========================================================\n"
-      print room.upload_pdf
+      print room.upload_pdf.path
       print "==========================================================\n"
-      # meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options)
-      meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options, modules)
+      if room.upload_pdf
+        meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options)
+      else
+        meeting = bbb_server.create_meeting(room.name, room.bbb_id, nil, modules)
+      end
+
+      print meeting
+      
       # Update session info.
       unless meeting[:messageKey] == 'duplicateWarning'
        room.update_attributes(sessions: room.sessions + 1,

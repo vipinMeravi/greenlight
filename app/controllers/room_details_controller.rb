@@ -22,10 +22,10 @@ class RoomDetailsController < ApplicationController
 
     # Create room
     print "----------------------------------------------------------------------\n"
-    print room_params
+    print  Time.zone.parse(room_params[:meeting_datetime].to_s).utc
     print "----------------------------------------------------------------------\n"
-
-    @room = Room.new(name: room_params[:name], access_code: room_params[:access_code], website_url: room_params[:website_url], video_url: room_params[:video_url], upload_pdf: room_params[:upload_pdf], upload_ppt: room_params[:upload_ppt], invite_emails: room_params[:invite_emails], meeting_datetime: room_params[:meeting_datetime], background_color: room_params[:background_color])
+    meeting_datetime = Time.zone.parse(room_params[:meeting_datetime].to_s).utc
+    @room = Room.new(name: room_params[:name], access_code: room_params[:access_code], website_url: room_params[:website_url], video_url: room_params[:video_url], upload_pdf: room_params[:upload_pdf], upload_ppt: room_params[:upload_ppt], invite_emails: room_params[:invite_emails], meeting_datetime: meeting_datetime, background_color: room_params[:background_color])
     @room.owner = current_user
     @room.room_settings = create_room_settings_string(room_params)
 

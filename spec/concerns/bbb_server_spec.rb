@@ -59,7 +59,6 @@ describe BbbServer do
       allow_any_instance_of(BigBlueButton::BigBlueButtonApi).to receive(:get_meeting_info).and_return(
         attendeePW: @room.attendee_pw
       )
-
       endpoint = Rails.configuration.bigbluebutton_endpoint
       secret = Rails.configuration.bigbluebutton_secret
       fullname = "fullName=Example"
