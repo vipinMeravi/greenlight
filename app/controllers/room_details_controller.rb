@@ -33,14 +33,15 @@ class RoomDetailsController < ApplicationController
     return redirect_to current_user.main_room, flash: { alert: I18n.t("room.create_room_error") } unless @room.save
 
     print "++++++++++++++++++++++++++++++++++++++\n\n\n"
-    print request.base_url + @room.invite_path
+    print request.base_url + @room.invite_path + "\n"
+    print current_user.name + " \n"
     print "++++++++++++++++++++++++++++++++++++++\n\n\n"
     
     #Send Invitation
     emails = room_params[:invite_emails].split(",")
     emails.each do |email|
       print email
-      send_user_invitation_email(room_params[:name], email, request.base_url + @room.invite_path)
+      send_user_invitation_email(current_user.name, email, request.base_url + @room.invite_path, room_params[:meeting_datetime])
     end
 
     logger.info "Support: #{current_user.email} has created a new room #{@room.uid}."

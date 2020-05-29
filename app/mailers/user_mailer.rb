@@ -100,13 +100,14 @@ class UserMailer < ApplicationMailer
   end
 
   # User Invitation Vipin
-  def user_invite_email(name, email, url, settings)
+  def user_invite_email(name, email, url, settings, datetime)
     @settings = settings
     @name = name
     @email = email
     @url = url
     @image = logo_image
     @color = user_color
+    @datetime = datetime
     mail to: email, subject: "Join the Zecast Meeting"
   end
 end

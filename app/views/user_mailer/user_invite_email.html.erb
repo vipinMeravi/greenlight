@@ -1,25 +1,24 @@
 <div style="text-align:center; font-family:'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
 <div style="display:inline-block; background-color:#F5F7FB; border:1px solid #d3d3d3; padding: 25px 70px">
-  <%= image_tag(@image, height: '70') %>
-
+  
   <h1 style="margin-bottom:30px">
-    <%= t('mailer.user.invite.subject') %>
+    <%= "Invitation to join Zecast" %>
   </h1>
 
   <p>
-    <%= t('mailer.user.invite.info', name: @name) %>
+    <%= "You have been invited to Join the Meeting by " + @name + ". The meeting will starting at  " + @datetime%>
   </p>
 
   <p>
-    <%= t('mailer.user.invite.username', email: @email) %>
+    <%= "Join the meeting with your mail id " + @email %>
   </p>
 
   <p style="margin-bottom:35px;">
-    <%= t('mailer.user.invite.signup_info') %>
+    <%= "To redirect to meeting joining page,  click the button below and follow the steps." %>
   </p>
 
   <a style="background: <%= @color %>;color: #ffffff; padding: 10px 15px; box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);border: 1px solid transparent;text-decoration:none;" href="<%= @url %>">
-    <%= t('mailer.user.invite.signup_link') %>
+    <%= "Join" %>
   </a>
 </div>
 </div>

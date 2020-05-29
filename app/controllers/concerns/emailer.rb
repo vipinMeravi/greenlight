@@ -84,11 +84,11 @@ module Emailer
   end
 
   #Send User Invitation to join Vipin
-  def send_user_invitation_email(name, email, url)
+  def send_user_invitation_email(name, email, url, datetime)
     begin
       return unless Rails.configuration.enable_email_verification
 
-      UserMailer.user_invite_email(name, email, url, @settings).deliver_now
+      UserMailer.user_invite_email(name, email, url, @settings, datetime).deliver_now
     rescue => e
       logger.error "Support: Error in email delivery: #{e}"
       flash[:alert] = I18n.t(params[:message], default: I18n.t("delivery_error"))
