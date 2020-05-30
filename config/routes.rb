@@ -18,6 +18,8 @@
 
 Rails.application.routes.draw do
   get 'room_details/index'
+  get 'room_details/room_settings', to: 'room_details#room_settings'
+  post 'room_details/update_settings', to: 'room_details#update_settings'
   post 'room_details/index', to: 'room_details#test', as: :test
   get 'welcome/index'
   get '/health_check', to: 'health_check#all'

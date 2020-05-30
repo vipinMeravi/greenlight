@@ -51,7 +51,7 @@ $(document).on('turbolinks:load', function(){
 
     // Display and update all fields related to creating a room in the createRoomModal
     $("#create-room-block").click(function(){
-      console.log(this)
+      console.log("Value ----------------------------- ",this)
       // $(location).attr('href','/room_details/index')
       showCreateRoom(this)
     })
