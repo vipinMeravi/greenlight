@@ -87,16 +87,16 @@ module BbbServer
 
     # Send the create request.
     begin
-      print "==========================================================\n"
-      print room.upload_pdf.path
-      print "==========================================================\n"
-      if room.upload_pdf
+
+      if room.upload_pdf.path
+        print "Post api call for meeting create \n"
         meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options, modules)
       else
+        print "Get api call for meeting create"
         meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options)
       end
 
-      print meeting.to_s + "\n"
+      print meeting
       
       # Update session info.
       unless meeting[:messageKey] == 'duplicateWarning'

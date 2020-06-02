@@ -10,78 +10,108 @@
       <div class="row">
         <div class="col-lg-6 pt-4" >
 
-          <div class="col-lg-3 float-left">
-            <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">Room Name</label>
-          </div>
-          <div class="input-icon mb-2 col-lg-9 float-right">
-            <span class="input-icon-addon">
-              <i class="fas fa-chalkboard-teacher"></i>
-            </span>
-            <%= f.text_field :name, id: "create-room-name", class: "form-control text-center", value: @room.name, placeholder: t("modal.create_room.name_placeholder"), autofocus: true, autocomplete: :off %>
-            <%= f.hidden_field :uid, value: @room.uid %>
-            <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
-          </div>
+          <table class="col-lg-12">
+            <tr>
+              <td>
+                <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">Room Name</label>
+              </td>
+              <td>
+                <div class="input-icon mb-2">
+                  <span class="input-icon-addon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                  </span>
+                  <%= f.text_field :name, id: "create-room-name", class: "form-control text-center", value: @room.name, placeholder: t("modal.create_room.name_placeholder"), autofocus: true, autocomplete: :off %>
+                  <%= f.hidden_field :uid, value: @room.uid %>
+                  <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
+                </div>              
+              </td>
+            </tr>
 
-          <div class="col-lg-3 float-left">
-            <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">Site URL</label>
-          </div>
-          <div class="input-icon mb-2 col-lg-9 float-right">
-            <span class="input-icon-addon">
-              <i class="fas fa-search"></i>
-            </span>
-            <%= f.url_field :website_url, id: "website_url", class: "form-control text-center", value: @room.website_url, placeholder: "https://bbb.brandwm.com/", autocomplete: :off %>
-            <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
-          </div>
+            <tr>
+              <td>
+                <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">Site URL</label>
+              </td>
+              <td>
+                <div class="input-icon mb-2">
+                  <span class="input-icon-addon">
+                    <i class="fas fa-search"></i>
+                  </span>
+                  <%= f.url_field :website_url, id: "website_url", class: "form-control text-center", value: @room.website_url, placeholder: "https://bbb.brandwm.com/", autocomplete: :off %>
+                  <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
+                </div>
+              </td>
+            </tr>
 
-          <div class="col-lg-3 float-left">
-            <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block"> Video URL </label>
-          </div>
-          <div class="input-icon mb-2 col-lg-9 float-right">
-            <span class="input-icon-addon">
-              <i class="fas fa-video"></i>
-            </span>
-            <%= f.url_field :video_url, id: "video_url", class: "form-control text-center", value: @room.video_url, placeholder: "https://www.youtube.com/exampleid", autocomplete: :off %>
-            <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
-          </div>	        
+            <tr>
+              <td>
+                <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block"> Video URL </label>
+              </td>
+              <td>
+                <div class="input-icon mb-2">
+                  <span class="input-icon-addon">
+                    <i class="fas fa-video"></i>
+                  </span>
+                  <%= f.url_field :video_url, id: "video_url", class: "form-control text-center", value: @room.video_url, placeholder: "https://www.youtube.com/exampleid", autocomplete: :off %>
+                  <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
+                </div>	 
+              </td>
+            </tr>
 
-          <div class="col-lg-3 float-left">
-            <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">Send Invitation</label>
-          </div>		          
-          <div class="input-icon mb-2 col-lg-9 float-right">
-            <span class="input-icon-addon">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <%= f.text_field :invite_emails, id: "create-room-name", class: "form-control text-center", value: @room.invite_emails, placeholder: "user1@mail.com, user2@mail.com,..", autocomplete: :off %>
-            <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
-          </div>       	        
+            <tr>
+              <td>
+                <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">Send Invitation</label>
+              </td>
+              <td>
+                <div class="input-icon mb-2">
+                  <span class="input-icon-addon">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  <%= f.text_field :invite_emails, id: "create-room-name", class: "form-control text-center", value: @room.invite_emails, placeholder: "user1@mail.com, user2@mail.com,..", autocomplete: :off %>
+                  <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
+                </div>    
+              </td>
+            </tr>
 
-          <div class="col-lg-3 float-left">
-            <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">Meeting Scheduler</label>
-          </div>
-          <div class="input-icon mb-2 col-lg-9 float-right">
-            <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
-              <%= f.datetime_local_field :meeting_datetime, required: true, class: "form-control text-center" %>
-            </label>
-          </div>
+            <tr>
+              <td>
+                <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">Meeting Scheduler</label>
+              </td>
+              <td>
+                <div class="input-icon mb-2">
+                  <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
+                    <%= f.datetime_local_field :meeting_datetime, required: true, class: "form-control text-center" %>
+                  </label>
+                </div>
+              </td>
+            </tr>
 
-          <div class="col-lg-3 float-left">
-            <label class="custom-switch pl-0 mt-lg-5 mb-3 w-100 text-left d-inline-block"> UPLOAD PDF </label>
-          </div>
-          <div class="input-icon mb-2 col-lg-9 float-right">
-            <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
-                <%= f.file_field :upload_pdf, id: "create-room-name", class: "form-control text-center", value: @room.upload_pdf,  autocomplete: :off %>
-            </label>	
-          </div>        
+            <tr>
+              <td>
+                <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block"> UPLOAD PDF </label>
+              </td>
+              <td>
+                <div class="input-icon mb-2">
+                  <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
+                      <%= f.file_field :upload_pdf, id: "create-room-name", class: "form-control text-center", value: @room.upload_pdf,  autocomplete: :off %>
+                  </label>	
+                </div>                
+              </td>
+            </tr>
 
-            <div class="col-lg-3 float-left">
-              <label class="custom-switch pt-3 pl-0 mt-3 mb-3 w-100 text-left d-inline-block"> UPLOAD PPT </label>
-            </div>
-            <div class="input-icon mb-2 col-lg-9 float-right">
-            <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
-                <%= f.file_field :upload_ppt, id: "create-room-name", class: "form-control text-center", value: @room.upload_pdf,  autocomplete: :off %>
-            </label>
-            </div>
-
+            <tr>
+              <td>
+                <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block"> UPLOAD PPT </label>
+              </td>
+              <td>
+                <div class="input-icon mb-2">
+                  <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
+                      <%= f.file_field :upload_ppt, id: "create-room-name", class: "form-control text-center", value: @room.upload_pdf,  autocomplete: :off %>
+                  </label>
+                </div>              
+              </td>
+            </tr>
+            
+          </table>
 
         </div>
         
