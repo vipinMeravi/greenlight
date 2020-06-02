@@ -83,7 +83,7 @@ module BbbServer
     modules = BigBlueButton::BigBlueButtonModules.new
     modules.add_presentation(:file, room.upload_pdf.path)
     # modules.add_presentation(:filename, "dummy.pdf")
-    modules.add_presentation(:url, 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', "dummy.pdf")
+    # modules.add_presentation(:url, 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', "dummy.pdf")
 
     # Send the create request.
     begin
@@ -91,12 +91,12 @@ module BbbServer
       print room.upload_pdf.path
       print "==========================================================\n"
       if room.upload_pdf
-        meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options)
+        meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options, modules)
       else
-        meeting = bbb_server.create_meeting(room.name, room.bbb_id, nil, modules)
+        meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options)
       end
 
-      print meeting
+      print meeting.to_s + "\n"
       
       # Update session info.
       unless meeting[:messageKey] == 'duplicateWarning'
