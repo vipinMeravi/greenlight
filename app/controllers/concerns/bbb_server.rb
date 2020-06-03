@@ -81,7 +81,19 @@ module BbbServer
     create_options[:guestPolicy] = "ASK_MODERATOR" if options[:require_moderator_approval]
   
     modules = BigBlueButton::BigBlueButtonModules.new
-    modules.add_presentation(:file, room.upload_pdf.path)
+    
+    if room.upload_pdf.path
+      modules.add_presentation(:file, room.upload_pdf.path)
+    else
+
+    end
+
+    if room.upload_ppt.path
+      modules.add_presentation(:file, room.upload_ppt.path)
+    else
+
+    end
+
     # modules.add_presentation(:filename, "dummy.pdf")
     # modules.add_presentation(:url, 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', "dummy.pdf")
 
