@@ -55,11 +55,17 @@ module BbbServer
     join_opts[:userID] = uid if uid
     join_opts[:join_via_html5] = true
     join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
+    print "------------------------- Background color----------------------------- \n"
+    if room.background_color
+      bg_color = "body { background-color: "+ room.background_color.to_s
+      bg_color += "!important;}"
+    else
+      "body { background-color: #06172A !important;}"
+    end
+    print bg_color
+
+    join_opts[:"userdata-customStyle"] = bg_color
     
-    # Define pre-loaded slides
-    # join_opts[:xml] = xml
-
-
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
   end
 

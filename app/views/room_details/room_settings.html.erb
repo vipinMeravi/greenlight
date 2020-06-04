@@ -184,7 +184,7 @@
             <span onclick="generateAccessCode()" class="input-icon-addon allow-icon-click cursor-pointer">
               <i class="fas fa-dice"></i>
             </span>
-            <% if @room.access_code.length > 0 %>
+            <% if @room.access_code && @room.access_code.length > 0 %>
                 <%= f.label :access_code, "Access Code : " + @room.access_code.to_s, id: "create-room-access-code", class: "form-control" %>
             <%else%>
                 <%= f.label :access_code, t("modal.create_room.access_code_placeholder"), id: "create-room-access-code", class: "form-control" %>
